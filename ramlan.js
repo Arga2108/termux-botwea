@@ -794,9 +794,11 @@ ${a}❏ Penyedia API${a}
 					const simpel = `「 *SIMPLE MENU* 」
 ${a}❏ ${prefix}sticker${a}
 ${a}❏ ${prefix}stickergif${a}
+${a}❏ ${prefix}searchsticker${a}
 ${a}❏ ${prefix}nuliskiri${a}
 ${a}❏ ${prefix}nuliskanan${a}
 ${a}❏ ${prefix}stalkig${a}
+${a}❏ ${prefix}searchig${a}
 ${a}❏ ${prefix}tts${a}
 ${a}❏ ${prefix}ttp${a}
 ${a}❏ ${prefix}attp${a}
@@ -871,6 +873,30 @@ ${a}❏ ${prefix}bikinquote${a}
 						reply(`Kirim gambar dengan caption ${prefix}sticker\nDurasi Sticker Video 1-9 Detik`)
 					}
 					break
+case 'searchsticker': //By Arga
+case 'searchstiker': //By Arga
+if (isBanned) return reply(nad.baned())
+if (!isRegistered) return reply(nad.noregis())
+if (isLimit(sender)) return reply(nad.limitend(pusname, prefix))
+await limitAdd(sender)
+ranp = getRandom('.png')
+rano = getRandom('.webp')
+anu = await fetchJson(`https://api.zeks.xyz/api/searchsticker?apikey=apivinz&q=${body.slice(14)}`, {method: 'get'})
+buffer = await getBuffer(anu.thumb)
+teks = `Nama Sticker : ${anu.title}`
+dung = (anu.sticker)
+rmln.sendMessage(from, buffer, image, {quoted: Lan, caption: teks})
+var tes2 =  dung[Math.floor(Math.random()  dung.length)];
+exec(`wget ${tes2} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+	if (err) return reply('Error cok')
+						fs.unlinkSync(ranp)
+						
+						buffer2 = fs.readFileSync(rano)
+						costum(buffer2, sticker, tescuk, `Judul Sticker : ${anu.title}`)
+						
+						fs.unlinkSync(rano)
+					})
+break
 
 				case 'nuliskiri':
 					if (isBanned) return reply(nad.baned())
@@ -910,7 +936,22 @@ ${a}❏ ${prefix}bikinquote${a}
 ◯ Biografi : ${abu.biography}`
 					rmln.sendMessage(from, stig, image, { quoted: Lan, caption: hasil })
 					break
-
+case 'igsearch': //By Arga
+if (isBanned) return reply(nad.baned())
+if (!isRegistered) return reply(nad.noregis())
+if (isLimit(sender)) return reply(nad.limitend(pusname, prefix))
+await limitAdd(sender)
+anu = await fetchJson(`https://api.zeks.xyz/api/iguser?apikey=apivinz&q=${body.slice(8)}`, {method: 'get'})
+teks = '𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺 𝗦𝗲𝗮𝗿𝗰𝗵\n'
+					for (let i of anu.result) {
+						teks += `Username : ${i.username}
+Private : ${i.private_user}
+Verified : ${i.verified_user}
+Link : https://www.instagram.com/${i.username}\n\n𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺 𝗦𝗲𝗮𝗿𝗰𝗵
+`
+}
+reply(teks.trim())
+break
 				case 'tts':
 					if (isBanned) return reply(nad.baned())
 					if (!isRegistered) return reply(nad.noregis())
@@ -1627,45 +1668,6 @@ ${a}❏ ${prefix}hartatahta${a}
 ${a}❏ ${prefix}wetglass${a}
 ${a}❏ ${prefix}stylelogo${a}
 ${a}❏ ${prefix}watercolor${a}
-${a}❏  ${prefix}qrcode
-${a}❏  ${prefix}barcode
-${a}❏  ${prefix}naruto
-${a}❏  ${prefix}breakwall
-${a}❏  ${prefix}matrix
-${a}❏  ${prefix}blueneon
-${a}❏  ${prefix}crosslogo
-${a}❏  ${prefix}flowertext
-${a}❏  ${prefix}wolflogo
-${a}❏  ${prefix}dropwater
-${a}❏  ${prefix}greenneon 
-${a}❏  ${prefix}crosslogo
-${a}❏  ${prefix}slapimage
-${a}❏  ${prefix}phkomen
-${a}❏  ${prefix}emoji
-${a}❏  ${prefix}silktext
-${a}❏  ${prefix}flametext
-${a}❏  ${prefix}retrotext
-${a}❏  ${prefix}lighttext 
-${a}❏  ${prefix}cslogo
-${a}❏  ${prefix}skytext
-${a}❏  ${prefix}pubglogo
-${a}❏  ${prefix}smoketext
-${a}❏  ${prefix}glowtext
-${a}❏  ${prefix}glitchtext
-${a}❏  ${prefix}textlight
-${a}❏  ${prefix}leavestext 
-${a}❏  ${prefix}bplogo
-${a}❏  ${prefix}phlogo
-${a}❏  ${prefix}text3d
-${a}❏  ${prefix}text3dbox
-${a}❏  ${prefix}splaybutton
-${a}❏  ${prefix}gplaybutton
-${a}❏  ${prefix}epep
-${a}❏  ${prefix}sandwrite 
-${a}❏  ${prefix}firework
-${a}❏  ${prefix}watercolor
-${a}❏  ${prefix}snowwrite
-${a}❏  ${prefix}crismes
 
 「 *${botName}* 」`
 					fakestatus(Laner)
